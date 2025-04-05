@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>GitDaVro - Home</title>
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+        
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+        
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="style.css"/>
+        <style>
+          :root {
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+          }
+          body {
+            font-family: 'Kanit', sans-serif;
+            color: white;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
+            background-attachment: fixed;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+          }
+          .nav-island {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+          }
+          .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+          }
+          .content-wrapper { flex: 1; display: flex; flex-direction: column; }
+          main { flex: 1; padding: 6rem 0 4rem; }
+          .btn-glow {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+          }
+          .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+          }
+          .fade-hover { transition: all 0.3s ease-in-out; }
+          .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+          }
+          .nav-link:hover {
+            background: rgba(0, 255, 255, 0.1);
+          }
+          .nav-link.active {
+            color: #00ffff;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+          }
+          @media (max-width: 768px) {
+            main { padding: 5rem 0 3rem; }
+            .nav-island { border-radius: 0; border-left: none; border-right: none; }
+          }
+          .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        </style>
+      </head>
+<body class="flex flex-col min-h-screen text-white">
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-4 z-50 w-full py-2 px-4">
+    <div class="container mx-auto">
+      <div class="nav-island flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-white fade-hover hover:opacity-80 ml-2">GitDaVro.</a>
+        <nav class="hidden md:flex items-center space-x-1">
+          <a href="index.html" class="nav-link fade-hover">Home</a>
+          <a href="about.html" class="nav-link fade-hover active">About</a>
+          <a href="portfolio.html" class="nav-link fade-hover">Projects</a>
+          <a href="contacts.html" class="nav-link fade-hover">Contact</a>
+        </nav>
+        <button class="md:hidden p-2 rounded-lg fade-hover hover:bg-[#00ffff20] text-white" id="mobile-menu-button">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="flex-grow flex items-center justify-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto p-6 sm:p-10 rounded-2xl space-y-8">
+
+        <!-- Page Title -->
+        <div class="mb-8 sm:mb-12 animate-fade-in">
+          <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4">About</h1>
+          <div class="w-20 h-1 bg-[#00ffff]"></div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="glass p-6 sm:p-8 rounded-xl mb-8 animate-fade-in">
+          <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">Education</h2>
+
+          <div class="space-y-6">
+            <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
+              <h3 class="text-lg sm:text-xl font-medium text-white">
+                Program Studi Sistem Informasi
+              </h3>
+              <p class="text-gray-300 mt-1">
+                Universitas Muhammadiyah Gresik • 2022-Present
+              </p>
+            </div>
+
+            <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
+              <h3 class="text-lg sm:text-xl font-medium text-white">
+                Rekayasa Perangkat Lunox (RPL)
+              </h3>
+              <p class="text-gray-300 mt-1">
+                SMK Semen Gresik • 2018-2021
+              </p>
+            </div>
+
+            <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
+              <h3 class="text-lg sm:text-xl font-medium text-white">
+                Junior HighSchool
+              </h3>
+              <p class="text-gray-300 mt-1">
+                SMP Negeri 2 Gresik • 2015-2018
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="glass p-6 sm:p-8 rounded-xl animate-fade-in">
+          <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">Skills</h2>
+
+          <div class="flex flex-wrap gap-2 sm:gap-3">
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-yellow-500 text-yellow-300">
+              LARAVEL (Learning)
+            </span>
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
+              JAVASCRIPT
+            </span>
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
+              HTML5
+            </span>
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
+              PHP
+            </span>
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-yellow-500 text-yellow-300">
+              Tailwind CSS (Learning)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-nav py-8 border-t border-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center text-gray-300">
+        <p class="mb-8">
+          My suggestion would be appreciated. You can reach me at
+          <a href="mailto:githriffgresik@gmail.com" class="fade-hover text-[#00ffff] hover:underline">githriffgresik@gmail.com</a>.
+        </p>
+        <div class="flex justify-center space-x-6">
+          <a href="https://github.com/githdavro/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#00ffff] text-xl"><i class="fab fa-github"></i></a>
+          <a href="https://www.facebook.com/githriff.nibross/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#00ffff] text-xl"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#00ffff] text-xl"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/gith.amd_" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#00ffff] text-xl"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="fade-hover mt-8">© 2025 GitDaVro. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
