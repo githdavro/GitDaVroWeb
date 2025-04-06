@@ -17,122 +17,154 @@
         <script src="https://cdn.tailwindcss.com"></script>
         
         <style>
-          :root {
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
-          }
-          body {
-            font-family: 'Kanit', sans-serif;
-            color: white;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
-            background-attachment: fixed;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-          }
-          /* Hide scrollbar when menu is open */
-          body.menu-open {
-            overflow: hidden;
-          }
-          .nav-island {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem;
-          }
-          .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-          }
-          .content-wrapper { flex: 1; display: flex; flex-direction: column; }
-          main { flex: 1; padding: 6rem 0 4rem; }
-          .btn-glow {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-          }
-          .btn-glow:hover {
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-            transform: translateY(-2px);
-          }
-          .fade-hover { transition: all 0.3s ease-in-out; }
-          .nav-link {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-          }
-          .nav-link:hover {
-            background: rgba(0, 255, 255, 0.1);
-          }
-          .nav-link.active {
-            color: #00ffff;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-          }
-          @media (max-width: 768px) {
-            main { padding: 5rem 0 3rem; }
-            header {
-              padding: 0;
-              top: 0;
-              left: 0;
-              right: 0;
-            }
-            .nav-island { 
-              border-radius: 0 !important;
-              border-left: none;
-              border-right: none;
-              border-top: none;
-              margin: 0;
-              width: 100%;
-              padding-left: 1rem;
-              padding-right: 1rem;
-            }
-            /* Mobile menu animation styles */
-            #mobile-menu {
-              max-height: 0;
-              overflow: hidden;
-              transition: max-height 0.3s ease-out;
-              display: block !important;
-              padding-left: 1rem;
-              padding-right: 1rem;
-              background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
-            }
-            #mobile-menu.menu-open {
-              max-height: 500px; /* Adjust based on your content height */
-              transition: max-height 0.3s ease-in;
-            }
-            #mobile-menu .container {
-              padding-left: 0;
-              padding-right: 0;
-            }
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          /* Custom scrollbar styling */
-          ::-webkit-scrollbar {
-            width: 8px;
-          }
-          ::-webkit-scrollbar-track {
-            background: #0a0a2a;
-          }
-          ::-webkit-scrollbar-thumb {
-            background: #00ffff;
-            border-radius: 4px;
-          }
+         :root {
+        --glass-bg: rgba(255, 255, 255, 0.08);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+      }
+      body {
+        font-family: 'Kanit', sans-serif;
+        color: white;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
+        background-attachment: fixed;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        /* Hide scrollbar - Firefox */
+        scrollbar-width: none;
+        /* Hide scrollbar - IE/Edge */
+        -ms-overflow-style: none;
+      }
+      /* Hide scrollbar - Chrome, Safari, Edge (Webkit) */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .nav-island {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem;
+      }
+
+      .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+      }
+
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+        padding: 6rem 0 4rem;
+      }
+
+      .btn-glow {
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      }
+
+      .btn-glow:hover {
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .fade-hover {
+        transition: all 0.3s ease-in-out;
+      }
+
+      .nav-link {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: rgba(0, 255, 255, 0.1);
+      }
+
+      .nav-link.active {
+        color: #00ffff;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 5rem 0 3rem;
+        }
+
+        header {
+          padding: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .nav-island {
+          border-radius: 0 !important;
+          border-left: none;
+          border-right: none;
+          border-top: none;
+          margin: 0;
+          width: 100%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        #mobile-menu {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          display: block !important;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
+        }
+
+        #mobile-menu.menu-open {
+          max-height: 500px;
+          transition: max-height 0.3s ease-in;
+        }
+
+        #mobile-menu .container {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
         </style>
       </head>
 <body class="flex flex-col min-h-screen bg-[#0f172a] text-white">

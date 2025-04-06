@@ -23,15 +23,24 @@
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
           }
           body {
-            font-family: 'Kanit', sans-serif;
-            color: white;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
-            background-attachment: fixed;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-          }
+        font-family: 'Kanit', sans-serif;
+        color: white;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
+        background-attachment: fixed;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        /* Hide scrollbar - Firefox */
+        scrollbar-width: none;
+        /* Hide scrollbar - IE/Edge */
+        -ms-overflow-style: none;
+      }
+      /* Hide scrollbar - Chrome, Safari, Edge (Webkit) */
+      ::-webkit-scrollbar {
+        display: none;
+      }
           /* Hide scrollbar when menu is open */
           body.menu-open {
             overflow: hidden;
