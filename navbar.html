@@ -1,0 +1,93 @@
+<!-- NAVBAR -->
+<header
+  class="w-full py-9 px-9 md:px-20 flex justify-between items-center
+         absolute top-0 left-0 z-50
+         ">
+
+  <!-- LOGO -->
+<div
+  class="text-3xl font-black text-white select-none
+         tracking-[-0.08em] scale-x-[0.92] origin-left">
+  GITDAVRO<span class="opacity-70">.</span>
+</div>
+
+  <!-- DESKTOP NAV -->
+  <nav class="hidden md:flex items-center space-x-2">
+    <a href="index.html" data-nav="home"
+      class="nav-link px-5 py-2 rounded-[30px]
+             font-medium text-blue
+             transition-all duration-300
+             hover:bg-white/20 hover:text-white
+             active:rounded-lg
+             ">
+      Home
+    </a>
+
+    <a href="about.html" data-nav="about"
+      class="nav-link px-5 py-2 rounded-[30px]
+             font-medium text-blue
+             transition-all duration-300
+             hover:bg-white/20 hover:text-white
+             active:rounded-lg">
+      About
+    </a>
+
+    <a href="portfolio.html" data-nav="portfolio"
+      class="nav-link px-5 py-2 rounded-[30px]
+             font-medium text-blue
+             transition-all duration-300
+             hover:bg-white/20 hover:text-white
+             active:rounded-lg">
+      Projects
+    </a>
+
+    <a href="contacts.html" data-nav="contact"
+      class="nav-link px-5 py-2 rounded-[30px]
+             font-medium text-blue
+             transition-all duration-300
+             hover:bg-white/20 hover:text-white
+             active:rounded-lg">
+      Contact
+    </a>
+  </nav>
+
+  <!-- MOBILE BUTTON -->
+  <button
+    id="mobile-menu-button"
+    class="md:hidden text-white text-2xl
+           transition-transform active:scale-90">
+    ☰
+  </button>
+</header>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu"
+  class="hidden fixed inset-0 z-40 font-black
+         bg-gradient-to-b from-[#0051cc] to-[#003c99]
+         flex flex-col items-center justify-center
+         space-y-16 text-2xl">
+
+  <a href="index.html" data-nav="home"
+    class="mobile-link font-bold text-white rounded-full px-5 py-2
+           transition-all duration-300 active:scale-90">
+    Home
+  </a>
+
+  <a href="about.html" data-nav="about"
+    class="mobile-link font-bold text-white rounded-full px-5 py-2
+           transition-all duration-300 active:scale-90">
+    About
+  </a>
+
+  <a href="portfolio.html" data-nav="portfolio"
+    class="mobile-link font-bold text-white rounded-full px-5 py-2
+           transition-all duration-300 hover:text-white active:scale-90">
+    Projects
+  </a>
+
+  <a href="contacts.html" data-nav="contact"
+    class="mobile-link font-bold text-white rounded-full px-5 py-2
+           transition-all duration-300 active:scale-90">
+    Contact
+  </a>
+</div>
