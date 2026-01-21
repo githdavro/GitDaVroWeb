@@ -66,12 +66,12 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
                 case 'contact': index = 3; break;
             }
             items[index].classList.add('active');
-            pill.style.left = `calc(${index * 25}% + 7px)`;
+            pill.style.left = `calc(${index * 24}% + 7px)`;
             items.forEach((item, i) => {
                 item.addEventListener('click', function(e) {
                 items.forEach(navItem => navItem.classList.remove('active'));
                 this.classList.add('active');
-                pill.style.left = `calc(${i * 25}% + 7px)`;
+                pill.style.left = `calc(${i * 26}% + 0px)`;
                 });
             });
             }, 80);
