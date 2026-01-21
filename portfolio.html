@@ -23,60 +23,54 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
     margin-right: 0.5rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer;
 }
 .view-buttons button.active { background: white; color: #0051cc; }
-.list-view .project-list { display: flex; flex-direction: column; gap: 1rem; }
-.list-view .m3-card { flex-direction: row; height: 120px; padding: 0; }
-.list-view .m3-card img { width: 120px; height: 100%; object-fit: cover; border-radius: 1rem 0 0 1rem; }
-.list-view .m3-card .p-4 { flex: 1; padding: 0.5rem 0.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+#projectsContainer.list-view > .m3-card { flex-direction: row; height: 120px; padding: 0; gap: 0; overflow: hidden; }
+#projectsContainer.list-view > .m3-card img { width: 120px; height: 100%; object-fit: cover; border-radius: 1rem 0 0 1rem; }
+#projectsContainer.list-view > .m3-card .p-4 { flex: 1; padding: 0.75rem 1rem; display: flex; flex-direction: column; justify-content: space-between; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 50; }
+.modal-bg.active { display: flex; }
+.modal-content { max-width: 90%; max-height: 90%; border-radius: 1rem; overflow: hidden; }
 </style>
 </head>
 <body class="bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
 
 <div id="navbar"></div>
-        <script>
-        fetch('navbar.html?v=' + Date.now())
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('navbar').innerHTML = html;
-
-            const path = window.location.pathname.toLowerCase();
-            let active = 'home';
-            if (path.includes('about')) active = 'about';
-            else if (path.includes('portfolio')) active = 'portfolio';
-            else if (path.includes('contact')) active = 'contact';
-
-            document.querySelectorAll('nav a[data-nav]').forEach(link => {
-            link.classList.remove('bg-white','text-blue-800','font-black');
-            link.classList.add('text-white','font-medium'); 
-
-            if (link.dataset.nav === active) {
-                link.classList.add('bg-white','text-blue-800','font-black');
-                link.classList.remove('text-white','font-medium');
-            }
-            });
-            setTimeout(() => {
-            const items = document.querySelectorAll('.nav-item');
-            const pill = document.getElementById('liquid-pill');
-            if (!pill || items.length === 0) return;
-            items.forEach(i => i.classList.remove('active'));
-            let index = 0;
-            switch(active) {
-                case 'home': index = 0; break;
-                case 'about': index = 1; break;
-                case 'portfolio': index = 2; break;
-                case 'contact': index = 3; break;
-            }
-            items[index].classList.add('active');
-            pill.style.left = `calc(${index * 24}% + 7px)`;
-            items.forEach((item, i) => {
-                item.addEventListener('click', function(e) {
+<script>
+fetch('navbar.html?v=' + Date.now())
+.then(res => res.text())
+.then(html => {
+    document.getElementById('navbar').innerHTML = html;
+    const path = window.location.pathname.toLowerCase();
+    let active = 'home';
+    if (path.includes('about')) active = 'about';
+    else if (path.includes('portfolio')) active = 'portfolio';
+    else if (path.includes('contact')) active = 'contact';
+    document.querySelectorAll('nav a[data-nav]').forEach(link => {
+        link.classList.remove('bg-white','text-blue-800','font-black');
+        link.classList.add('text-white','font-medium'); 
+        if (link.dataset.nav === active) {
+            link.classList.add('bg-white','text-blue-800','font-black');
+            link.classList.remove('text-white','font-medium');
+        }
+    });
+    setTimeout(() => {
+        const items = document.querySelectorAll('.nav-item');
+        const pill = document.getElementById('liquid-pill');
+        if (!pill || items.length === 0) return;
+        items.forEach(i => i.classList.remove('active'));
+        let index = 0;
+        switch(active) { case 'home': index = 0; break; case 'about': index = 1; break; case 'portfolio': index = 2; break; case 'contact': index = 3; break; }
+        items[index].classList.add('active');
+        pill.style.left = `calc(${index * 24}% + 7px)`;
+        items.forEach((item, i) => {
+            item.addEventListener('click', function(e) {
                 items.forEach(navItem => navItem.classList.remove('active'));
                 this.classList.add('active');
                 pill.style.left = `calc(${i * 26}% + 0px)`;
-                });
             });
-            }, 80);
         });
-    </script>
+    }, 80);
+});
+</script>
 
 <main class="flex-grow pt-28 pb-16 fade-in-up">
     <div class="container mx-auto px-4 max-w-5xl">
@@ -88,10 +82,9 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
                 <button id="listBtn">List</button>
             </div>
         </div>
-
         <div id="projectsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="m3-card overflow-hidden">
-                <div class="relative h-44 overflow-hidden"><img src="storage/projects/web3.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="relative h-44 overflow-hidden cursor-pointer"><img src="storage/projects/web3.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
                 <div class="p-4 flex flex-col flex-grow">
                     <h3 class="text-lg font-bold mb-2">Website Desa Sukorejo</h3>
                     <p class="text-white/70 mb-4 flex-grow text-sm">Dynamic Laravel 11 web project for KKN 46 UMG, developed with Ainur Rifki Pratama.</p>
@@ -99,18 +92,18 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
                 </div>
             </div>
             <div class="m3-card overflow-hidden">
-                <div class="relative h-44 overflow-hidden"><img src="storage/projects/web2.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="relative h-44 overflow-hidden cursor-pointer"><img src="storage/projects/web2.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
                 <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold mb-2">Sims 3 Native Wannabe UI Mod</h3>
+                    <h3 class="text-lg font-bold mb-2">(WIP)  Sims 3 Native Wannabe UI Mod</h3>
                     <p class="text-white/70 mb-4 flex-grow text-sm">UI modification experiment inspired by modern operating system aesthetics.</p>
                     <a href="#" class="text-center py-2 opacity-60 cursor-not-allowed text-sm font-black tracking-wide bg-[#d3e3fd] text-blue-800 rounded-xl transition-all duration-400 hover:bg-white">Coming Soon</a>
                 </div>
             </div>
             <div class="m3-card overflow-hidden">
-                <div class="relative h-44 overflow-hidden"><img src="storage/projects/0.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="relative h-44 overflow-hidden cursor-pointer"><img src="storage/projects/LokalKali.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
                 <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold mb-2">Upcoming Project</h3>
-                    <p class="text-white/70 mb-4 flex-grow text-sm">A new project currently in development.</p>
+                    <h3 class="text-lg font-bold mb-2">(WIP) LokalKali</h3>
+                    <p class="text-white/70 mb-4 flex-grow text-sm">A new project currently in development 👀</p>
                     <a href="#" class="text-center py-2 opacity-60 cursor-not-allowed text-sm font-black tracking-wide bg-[#d3e3fd] text-blue-800 rounded-xl transition-all duration-400 hover:bg-white">Coming Soon</a>
                 </div>
             </div>
@@ -123,11 +116,14 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
 fetch('footer.html').then(res => res.text()).then(html => { document.getElementById('footer').innerHTML = html; });
 </script>
 
+<div id="imageModal" class="modal-bg">
+    <img class="modal-content" id="modalImage" src="">
+</div>
+
 <script>
 const gridBtn = document.getElementById('gridBtn');
 const listBtn = document.getElementById('listBtn');
 const container = document.getElementById('projectsContainer');
-
 gridBtn.addEventListener('click', () => {
     container.classList.remove('list-view');
     container.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
@@ -140,6 +136,15 @@ listBtn.addEventListener('click', () => {
     listBtn.classList.add('active');
     gridBtn.classList.remove('active');
 });
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+document.querySelectorAll('#projectsContainer img').forEach(img => {
+    img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.classList.add('active');
+    });
+});
+modal.addEventListener('click', () => { modal.classList.remove('active'); modalImg.src = ''; });
 </script>
 
 </body>
