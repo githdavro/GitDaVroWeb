@@ -125,7 +125,7 @@
     <div class="w-full max-w-7xl px-6 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
         <div class="flex justify-center md:justify-end order-1">
-            <div class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[520px] md:h-[520px]">
+            <div class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[520px] md:h-[520px] select-none">
                 <img
                     src="storage/projects/shapes.png"
                     class="
@@ -134,6 +134,7 @@
                         pointer-events-none
                         animate-[slow-spin_32s_linear_infinite]
                     "
+                    draggable="false"
                 >
                 <img
                     src="storage/projects/git - Copy.png"
@@ -141,6 +142,12 @@
                         relative z-10 w-full h-full object-contain
                         drop-shadow-2xl
                     "
+                    draggable="false"
+                    oncontextmenu="return false;"
+                    onmousedown="return false;"
+                    onselectstart="return false;"
+                    ondragstart="return false;"
+                    ontouchstart="if(event.touches.length > 0) event.preventDefault();"
                 >
             </div>
         </div>
@@ -148,8 +155,7 @@
         <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-5 fade-in-up order-2">
 
             <h1 class="text-3xl md:text-5xl font-bold leading-tight">
-                Hi, I'm <span class="ini block md:inline" style="letter-spacing: 0.1em;">
-  GITHRIFF AHMAD</span>
+                Hi, I'm <span class="ini block md:inline" style="letter-spacing: 0.1em;">GITHRIFF AHMAD</span>
             </h1>
 
             <h2 class="text-lg md:text-2xl font-bold opacity-90">
