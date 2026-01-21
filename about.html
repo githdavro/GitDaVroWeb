@@ -1,305 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitDaVro | About</title>
-    <link rel="icon" type="image/png" href="storage\projects\icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GitDaVro - About</title>
+    <link rel="icon" type="image/png" href="storage/projects/icon.png">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Tailwind CSS CDN -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-      :root {
-        --glass-bg: rgba(255, 255, 255, 0.08);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
-      }
-      body {
-        font-family: 'Kanit', sans-serif;
-        color: white;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
-        background-attachment: fixed;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-
-        /* Hide scrollbar - Firefox */
-        scrollbar-width: none;
-        /* Hide scrollbar - IE/Edge */
-        -ms-overflow-style: none;
-      }
-      /* Hide scrollbar - Chrome, Safari, Edge (Webkit) */
-      ::-webkit-scrollbar {
-        display: none;
-      }
-
-      body.menu-open {
-        overflow: hidden;
-      }
-
-      .nav-island {
-        background: var(--glass-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem;
-      }
-
-      .glass {
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--glass-shadow);
-      }
-
-      .content-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      main {
-        flex: 1;
-        padding: 6rem 0 4rem;
-      }
-
-      .btn-glow {
-        transition: all 0.3s ease;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-      }
-
-      .btn-glow:hover {
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-        transform: translateY(-2px);
-      }
-
-      .fade-hover {
-        transition: all 0.3s ease-in-out;
-      }
-
-      .nav-link {
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        transition: all 0.2s ease;
-      }
-
-      .nav-link:hover {
-        background: rgba(0, 255, 255, 0.1);
-      }
-
-      .nav-link.active {
-        color: #00ffff;
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--glass-shadow);
-      }
-
-      @media (max-width: 768px) {
-        main {
-          padding: 5rem 0 3rem;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        header {
-          padding: 0;
-          top: 0;
-          left: 0;
-          right: 0;
+        .fade-in-up {
+            animation: fadeInUp .7s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .nav-island {
-          border-radius: 0 !important;
-          border-left: none;
-          border-right: none;
-          border-top: none;
-          margin: 0;
-          width: 100%;
-          padding-left: 1rem;
-          padding-right: 1rem;
+        .m3-card {
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.14),
+                rgba(255,255,255,0.04)
+            );
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            padding: 1.1rem 1.25rem;
+            border: 1px solid rgba(255,255,255,.18);
+            transition: all .25s ease;
         }
 
-        #mobile-menu {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease-out;
-          display: block !important;
-          padding-left: 1rem;
-          padding-right: 1rem;
-          background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
+        .m3-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px rgba(0,0,0,.22);
         }
 
-        #mobile-menu.menu-open {
-          max-height: 500px;
-          transition: max-height 0.3s ease-in;
+        .m3-chip {
+            padding: .45rem .9rem;
+            border-radius: 9999px;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .07em;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.22);
+            transition: all .2s ease;
         }
 
-        #mobile-menu .container {
-          padding-left: 0;
-          padding-right: 0;
+        .m3-chip:hover {
+            background: #fff;
+            color: #003c99;
         }
-      }
-
-      .animate-fade-in {
-        animation: fadeIn 0.6s ease-out forwards;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
     </style>
-  </head>
-  <body class="flex flex-col min-h-screen text-white">
-    <header class="sticky top-0 z-50 w-full md:top-4 md:py-2 md:px-4">
-      <div class="container mx-auto px-0">
-        <div class="nav-island flex justify-between items-center md:rounded-xl md:px-4">
-          <a href="index.html" class="text-2xl font-bold text-white fade-hover hover:opacity-80 ml-2 md:ml-2">GitDaVro.</a>
-          <nav class="hidden md:flex items-center space-x-1">
-            <a href="index.html" class="nav-link fade-hover">Home</a>
-            <a href="about.html" class="nav-link fade-hover active">About</a>
-            <a href="portfolio.html" class="nav-link fade-hover">Projects</a>
-            <a href="contacts.html" class="nav-link fade-hover">Contact</a>
-          </nav>
-          <button class="md:hidden p-2 rounded-lg fade-hover hover:bg-[#00ffff20] text-white" id="mobile-menu-button">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
+</head>
 
-    <div class="md:hidden" id="mobile-menu">
-      <div class="container mx-auto py-2 flex flex-col space-y-2">
-        <a href="index.html" class="nav-link fade-hover">Home</a>
-        <a href="about.html" class="nav-link fade-hover active">About</a>
-        <a href="portfolio.html" class="nav-link fade-hover">Projects</a>
-        <a href="contacts.html" class="nav-link fade-hover">Contact</a>
-      </div>
+<body class="bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
+
+<div id="navbar"></div>
+
+<script>
+fetch('navbar.html?v=' + Date.now())
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('navbar').innerHTML = html;
+
+    const path = window.location.pathname.toLowerCase();
+    let active = 'home';
+    if (path.includes('about')) active = 'about';
+    else if (path.includes('portfolio')) active = 'portfolio';
+    else if (path.includes('contact')) active = 'contact';
+
+    /* ===== DESKTOP ACTIVE ===== */
+    document.querySelectorAll('nav a[data-nav]').forEach(link => {
+      // reset warna & font, jangan ubah padding
+      link.classList.remove('bg-white','text-blue-800','font-black');
+      link.classList.add('text-white','font-medium'); // default state
+
+      if (link.dataset.nav === active) {
+        link.classList.add('bg-white','text-blue-800','font-black');
+        link.classList.remove('text-white','font-medium');
+      }
+    });
+
+    /* ===== MOBILE ACTIVE ===== */
+    setTimeout(() => {
+      const items = document.querySelectorAll('.nav-item');
+      const pill = document.getElementById('liquid-pill');
+      if (!pill || items.length === 0) return;
+
+      items.forEach(i => i.classList.remove('active'));
+
+      let index = 0;
+      switch(active) {
+        case 'home': index = 0; break;
+        case 'about': index = 1; break;
+        case 'portfolio': index = 2; break;
+        case 'contact': index = 3; break;
+      }
+
+      items[index].classList.add('active');
+      pill.style.left = `calc(${index * 25}% + 1px)`;
+    }, 80);
+  });
+
+</script>
+
+<main class="flex-grow pt-32 pb-16 fade-in-up">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="mb-12 text-center">
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">
+                About <span class="opacity-70">Me</span>
+            </h1>
+            <p class="text-base md:text-lg text-white/70 max-w-2xl mx-auto">
+                Curious, adaptive, and focused on building impactful digital solutions
+                through clean design and solid engineering.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+            <section>
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-1.5 h-7 bg-white/70 rounded-full"></span>
+                    Education
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="m3-card">
+                        <h3 class="text-lg font-semibold">
+                            Universitas Muhammadiyah Gresik
+                        </h3>
+                        <p class="text-sm text-white/60 mt-0.5">
+                            Information Systems • 2022 — Present
+                        </p>
+                    </div>
+
+                    <div class="m3-card">
+                        <h3 class="text-lg font-semibold">
+                            SMK Semen Gresik
+                        </h3>
+                        <p class="text-sm text-white/60 mt-0.5">
+                            Software Engineering • 2018 — 2021
+                        </p>
+                    </div>
+
+                    <div class="m3-card">
+                        <h3 class="text-lg font-semibold">
+                            SMP Negeri 2 Gresik
+                        </h3>
+                        <p class="text-sm text-white/60 mt-0.5">
+                            2015 — 2018
+                        </p>
+                    </div>
+                </div>
+            </section>
+       
+            <section>
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-1.5 h-7 bg-white/70  rounded-full"></span>
+                    Skills
+                </h2>
+
+                <div class="m3-card flex flex-wrap gap-3">
+                    <span class="m3-chip">LARAVEL</span>
+                    <span class="m3-chip">CODE IGNITER</span>
+                    <span class="m3-chip">TAILWIND</span>
+                    <span class="m3-chip">JAVASCRIPT</span>
+                    <span class="m3-chip">PHP</span>
+                    <span class="m3-chip">MYSQL</span>
+                    <span class="m3-chip">GIT</span>
+                    <span class="m3-chip">FIGMA</span>
+                    <span class="m3-chip">ADOBE XD</span>
+                    <span class="m3-chip">PHOTOSHOP</span>
+                    <span class="m3-chip">ILLUSTRATOR</span>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<div id="footer"></div>
+
+<script>
+fetch('footer.html')
+.then(res => res.text())
+.then(html => {
+    document.getElementById('footer').innerHTML = html;
+});
+</script>
+
+<div id="scrollTopBtn"
+            style="
+                position: fixed;
+                bottom: 100px;
+                right: 30px;
+                background-color: rgba(211, 227, 253, 0.6); 
+                backdrop-filter: blur(8px); 
+                -webkit-backdrop-filter: blur(8px);
+                color: #0051cc;
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transition: all 0.3s ease;
+                opacity: 0;
+                pointer-events: none;
+                z-index: 1000;
+            ">
+            <i class="fas fa-chevron-up"></i>
     </div>
 
-    <section class="flex-grow flex items-center justify-center">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto p-6 sm:p-10 rounded-2xl space-y-8">
-          <div class="mb-8 sm:mb-12 animate-fade-in w-fit">
-            <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">About</h1>
-            <div class="w-full h-1 bg-[#00ffff]"></div>
-          </div>
+        <script>
+            const scrollBtn = document.getElementById('scrollTopBtn');
 
-          <div class="glass p-6 sm:p-8 rounded-xl mb-8 animate-fade-in">
-            <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">Education</h2>
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.style.opacity = "1";
+                    scrollBtn.style.pointerEvents = "auto";
+                } else {
+                    scrollBtn.style.opacity = "0";
+                    scrollBtn.style.pointerEvents = "none";
+                }
+            });
 
-            <div class="space-y-6">
-              <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
-                <h3 class="text-lg sm:text-xl font-medium text-white">
-                  Universitas Muhammadiyah Gresik
-                </h3>
-                <p class="text-gray-300 mt-1">Program Studi Sistem Informasi • 2022-Present</p>
-              </div>
+            scrollBtn.addEventListener('mouseover', () => {
+                scrollBtn.style.transform = "scale(1.1)";
+                scrollBtn.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+            });
 
-              <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
-                <h3 class="text-lg sm:text-xl font-medium text-white">
-                  SMK Semen Gresik
-                </h3>
-                <p class="text-gray-300 mt-1">Rekayasa Perangkat Lunak (RPL) • 2018-2021</p>
-              </div>
+            scrollBtn.addEventListener('mouseout', () => {
+                scrollBtn.style.transform = "scale(1)";
+                scrollBtn.style.backgroundColor = "rgba(211, 227, 253, 0.6)";
+            });
 
-              <div class="border-l-4 border-[#00ffff] pl-4 sm:pl-6">
-                <h3 class="text-lg sm:text-xl font-medium text-white">
-                  SMP Negeri 2 Gresik
-                </h3>
-                <p class="text-gray-300 mt-1">Junior High School • 2015-2018</p>
-              </div>
-            </div>
-          </div>
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        </script>
 
-          <div class="glass p-6 sm:p-8 rounded-xl animate-fade-in">
-            <h2 class="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">Skills</h2>
-
-            <div class="flex flex-wrap gap-2 sm:gap-3">
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-yellow-500 text-yellow-300">
-                LARAVEL (Learning)
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
-                JAVASCRIPT
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
-                HTML5
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
-                PHP
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
-                CSS3
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-blue-500 text-blue-300">
-                Bootstrap
-              </span>
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border border-yellow-500 text-yellow-300">
-                Tailwind CSS (Learning)
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="glass-nav py-8 border-t border-gray-800">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center text-gray-300">
-          <p class="mb-8">
-            Any suggestion would be appreciated. You can reach me at
-            <a href="mailto:githriffgresik@gmail.com" class="fade-hover text-[#00ffff] hover:underline">githriffgresik@gmail.com</a>.
-          </p>
-          <div class="flex justify-center space-x-6">
-            <a href="https://github.com/githdavro/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#c700f7] text-xl"><i class="fab fa-github"></i></a>
-            <a href="https://www.facebook.com/githriff.nibross/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#0024ff] text-xl"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#ffffff] text-xl"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/gith.amd_" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#ff579f] text-xl"><i class="fab fa-instagram"></i></a>
-          </div>
-          <p class="fade-hover mt-8">© 2025 GitDaVro. All Rights Reserved.</p>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      document.getElementById('mobile-menu-button').addEventListener('click', function () {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('menu-open');
-        document.body.classList.toggle('menu-open');
-
-        const icon = this.querySelector('svg');
-        if (menu.classList.contains('menu-open')) {
-          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
-        } else {
-          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-        }
-      });
-    </script>
-  </body>
+</body>
 </html>

@@ -1,322 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>GitDaVro | Projects</title>
-        <link rel="icon" type="image/png" href="storage\projects\icon.png">
-        
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-        
-        <!-- Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-        
-        <!-- Tailwind CSS CDN -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        
-        <style>
-         :root {
-        --glass-bg: rgba(255, 255, 255, 0.08);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
-      }
-      body {
-        font-family: 'Kanit', sans-serif;
-        color: white;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #020215 0%, #0a0a2a 50%, #1a1a3a 100%);
-        background-attachment: fixed;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GitDaVro | Projects</title>
+<link rel="icon" type="image/png" href="storage/projects/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
+.fade-in-up { animation: fadeInUp .8s ease-out forwards; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.m3-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
+    backdrop-filter: blur(14px); border-radius: 1.25rem; border: 1px solid rgba(255,255,255,.18);
+    transition: all .35s ease; display: flex; flex-direction: column;
+}
+.m3-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px rgba(0,0,0,.3); }
+.view-buttons button {
+    background: rgba(255,255,255,0.2); color: white; font-weight: 600; padding: 0.5rem 1rem;
+    margin-right: 0.5rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer;
+}
+.view-buttons button.active { background: white; color: #0051cc; }
+.list-view .project-list { display: flex; flex-direction: column; gap: 1rem; }
+.list-view .m3-card { flex-direction: row; height: 120px; padding: 0; }
+.list-view .m3-card img { width: 120px; height: 100%; object-fit: cover; border-radius: 1rem 0 0 1rem; }
+.list-view .m3-card .p-4 { flex: 1; padding: 0.5rem 0.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+</style>
+</head>
+<body class="bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
 
-        /* Hide scrollbar - Firefox */
-        scrollbar-width: none;
-        /* Hide scrollbar - IE/Edge */
-        -ms-overflow-style: none;
-      }
-      /* Hide scrollbar - Chrome, Safari, Edge (Webkit) */
-      ::-webkit-scrollbar {
-        display: none;
-      }
+<div id="navbar"></div>
+<script>
+fetch('navbar.html?v=' + Date.now())
+.then(res => res.text())
+.then(html => { document.getElementById('navbar').innerHTML = html; });
+</script>
 
-      body.menu-open {
-        overflow: hidden;
-      }
-
-      .nav-island {
-        background: var(--glass-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem;
-      }
-
-      .glass {
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--glass-shadow);
-      }
-
-      .content-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      main {
-        flex: 1;
-        padding: 6rem 0 4rem;
-      }
-
-      .btn-glow {
-        transition: all 0.3s ease;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-      }
-
-      .btn-glow:hover {
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-        transform: translateY(-2px);
-      }
-
-      .fade-hover {
-        transition: all 0.3s ease-in-out;
-      }
-
-      .nav-link {
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        transition: all 0.2s ease;
-      }
-
-      .nav-link:hover {
-        background: rgba(0, 255, 255, 0.1);
-      }
-
-      .nav-link.active {
-        color: #00ffff;
-        background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        border: 1px solid var(--glass-border);
-        box-shadow: var(--glass-shadow);
-      }
-
-      @media (max-width: 768px) {
-        main {
-          padding: 5rem 0 3rem;
-        }
-
-        header {
-          padding: 0;
-          top: 0;
-          left: 0;
-          right: 0;
-        }
-
-        .nav-island {
-          border-radius: 0 !important;
-          border-left: none;
-          border-right: none;
-          border-top: none;
-          margin: 0;
-          width: 100%;
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-
-        #mobile-menu {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease-out;
-          display: block !important;
-          padding-left: 1rem;
-          padding-right: 1rem;
-          background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
-        }
-
-        #mobile-menu.menu-open {
-          max-height: 500px;
-          transition: max-height 0.3s ease-in;
-        }
-
-        #mobile-menu .container {
-          padding-left: 0;
-          padding-right: 0;
-        }
-      }
-
-      .animate-fade-in {
-        animation: fadeIn 0.6s ease-out forwards;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-        </style>
-      </head>
-<body class="flex flex-col min-h-screen bg-[#0f172a] text-white">
-
-  <!-- Header -->
-  <header class="sticky top-0 z-50 w-full md:top-4 md:py-2 md:px-4">
-    <div class="container mx-auto px-0">
-      <div class="nav-island flex justify-between items-center md:rounded-xl md:px-4">
-        <a href="index.html" class="text-2xl font-bold text-white fade-hover hover:opacity-80 ml-2 md:ml-2">GitDaVro.</a>
-        <nav class="hidden md:flex items-center space-x-1">
-          <a href="index.html" class="nav-link fade-hover">Home</a>
-          <a href="about.html" class="nav-link fade-hover">About</a>
-          <a href="portfolio.html" class="nav-link fade-hover active">Projects</a>
-          <a href="contacts.html" class="nav-link fade-hover">Contact</a>
-        </nav>
-        <button class="md:hidden p-2 rounded-lg fade-hover hover:bg-[#00ffff20] text-white" id="mobile-menu-button">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Menu with sliding animation -->
-  <div class="md:hidden" id="mobile-menu">
-    <div class="container mx-auto py-2 flex flex-col space-y-2">
-      <a href="index.html" class="nav-link fade-hover">Home</a>
-      <a href="about.html" class="nav-link fade-hover">About</a>
-      <a href="portfolio.html" class="nav-link fade-hover active">Projects</a>
-      <a href="contacts.html" class="nav-link fade-hover">Contact</a>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <section class="flex-grow flex items-center justify-center">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto p-6 sm:p-10 rounded-2xl space-y-8">
-
-        <!-- Page Header -->
-        <div class="mb-8 sm:mb-12 animate-fade-in w-fit">
-            <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">My Projects</h1>
-            <div class="w-full h-1 bg-[#00ffff]"></div>
-          </div>
-
-        <!-- Projects Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 animate-fade-in">
-          <div class="glass rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col">
-            <!-- Image -->
-            <div class="relative h-48 sm:h-56 overflow-hidden">
-              <img src="storage\projects\web3.png" 
-                  alt="WEBSITE SUKOREJO (FRONT-END)"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+<main class="flex-grow pt-28 pb-16 fade-in-up">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <div class="mb-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight mb-2">My <span class="opacity-70">Projects</span></h1>
+            <p class="text-white/70 mb-4">A selection of projects I’ve worked on — ranging from web development, UI experimentation, to collaborative builds.</p>
+            <div class="view-buttons flex justify-center">
+                <button id="gridBtn" class="active">Grid</button>
+                <button id="listBtn">List</button>
             </div>
-            <!-- Content -->
-            <div class="p-6 flex flex-col flex-grow">
-              <h3 class="text-xl font-semibold text-white mb-3">WEBSITE SUKOREJO (FRONT-END) Co-Dev with Ainur Rifki Pratama</h3>
-              <p class="text-gray-300 mb-6 line-clamp-3 flex-grow">
-                Web Project untuk Proker Prodi Sistem Informasi KKN 46 UMG
-              </p>
-              <a href="https://desasukorejo.my.id/" target="_blank"
-                class="btn-glow w-full flex items-center justify-center px-4 py-3 bg-[#00ffff] hover:bg-[#00ffff] text-[#020215] font-medium rounded-lg transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-                </svg>
-                View Project
-              </a>
-            </div>
-          </div>
-          <div class="glass rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col">
-            <!-- Image -->
-            <div class="relative h-48 sm:h-56 overflow-hidden">
-              <img src="storage\projects\web2.png" 
-                  alt="WEBSITE SUKOREJO (FRONT-END)"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            </div>
-            <!-- Content -->
-            <div class="p-6 flex flex-col flex-grow">
-              <h3 class="text-xl font-semibold text-white mb-3">Sims 3 Native Wannabe UI Mod</h3>
-              <p class="text-gray-300 mb-6 line-clamp-3 flex-grow">
-               coming soon
-              </p>
-              <a href="#" target="_blank"
-                class="btn-glow w-full flex items-center justify-center px-4 py-3 bg-[#00ffff] hover:bg-[#00ffff] text-[#020215] font-medium rounded-lg transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-                </svg>
-                View Project
-              </a>
-            </div>
-          </div>
-          <div class="glass rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col">
-            <!-- Image -->
-            <div class="relative h-48 sm:h-56 overflow-hidden">
-              <img src="storage\projects\0.png" 
-                  alt="WEBSITE SUKOREJO (FRONT-END)"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            </div>
-            <!-- Content -->
-            <div class="p-6 flex flex-col flex-grow">
-              <h3 class="text-xl font-semibold text-white mb-3">Coming Soon</h3>
-              <p class="text-gray-300 mb-6 line-clamp-3 flex-grow">
-               coming soon
-              </p>
-              <a href="#" target="_blank"
-                class="btn-glow w-full flex items-center justify-center px-4 py-3 bg-[#00ffff] hover:bg-[#00ffff] text-[#020215] font-medium rounded-lg transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-                </svg>
-                View Project
-              </a>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="glass-nav py-8 border-t border-gray-800">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center text-gray-300">
-        <p class="mb-8">
-          Any suggestion would be appreciated. You can reach me at
-          <a href="mailto:githriffgresik@gmail.com" class="fade-hover text-[#00ffff] hover:underline">githriffgresik@gmail.com</a>.
-        </p>
-        <div class="flex justify-center space-x-6">
-          <a href="https://github.com/githdavro/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#c700f7] text-xl"><i class="fab fa-github"></i></a>
-          <a href="https://www.facebook.com/githriff.nibross/" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#0024ff] text-xl"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#ffffff] text-xl"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://www.instagram.com/gith.amd_" class="glass p-3 rounded-full fade-hover text-gray-300 hover:text-[#ff579f] text-xl"><i class="fab fa-instagram"></i></a>
+        <div id="projectsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="m3-card overflow-hidden">
+                <div class="relative h-44 overflow-hidden"><img src="storage/projects/web3.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold mb-2">Website Desa Sukorejo</h3>
+                    <p class="text-white/70 mb-4 flex-grow text-sm">Dynamic Laravel 11 web project for KKN 46 UMG, developed with Ainur Rifki Pratama.</p>
+                    <a href="https://desasukorejo.my.id/" target="_blank" class="text-center py-2 text-sm font-black tracking-wide bg-white text-blue-800 rounded-xl transition-all duration-400 hover:bg-white">View Project</a>
+                </div>
+            </div>
+            <div class="m3-card overflow-hidden">
+                <div class="relative h-44 overflow-hidden"><img src="storage/projects/web2.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold mb-2">Sims 3 Native Wannabe UI Mod</h3>
+                    <p class="text-white/70 mb-4 flex-grow text-sm">UI modification experiment inspired by modern operating system aesthetics.</p>
+                    <a href="#" class="text-center py-2 opacity-60 cursor-not-allowed text-sm font-black tracking-wide bg-[#d3e3fd] text-blue-800 rounded-xl transition-all duration-400 hover:bg-white">Coming Soon</a>
+                </div>
+            </div>
+            <div class="m3-card overflow-hidden">
+                <div class="relative h-44 overflow-hidden"><img src="storage/projects/0.png" class="w-full h-full object-cover hover:scale-105 transition-transform duration-400"></div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold mb-2">Upcoming Project</h3>
+                    <p class="text-white/70 mb-4 flex-grow text-sm">A new project currently in development.</p>
+                    <a href="#" class="text-center py-2 opacity-60 cursor-not-allowed text-sm font-black tracking-wide bg-[#d3e3fd] text-blue-800 rounded-xl transition-all duration-400 hover:bg-white">Coming Soon</a>
+                </div>
+            </div>
         </div>
-        <p class="fade-hover mt-8">© 2025 GitDaVro. All Rights Reserved.</p>
-      </div>
     </div>
-  </footer>
+</main>
 
-  <script>
-    document.getElementById('mobile-menu-button').addEventListener('click', function () {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('menu-open');
-      document.body.classList.toggle('menu-open');
-      
-      // Change menu icon to X when open
-      const icon = this.querySelector('svg');
-      if (menu.classList.contains('menu-open')) {
-        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
-      } else {
-        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-      }
-    });
-  </script>
+<div id="footer"></div>
+<script>
+fetch('footer.html').then(res => res.text()).then(html => { document.getElementById('footer').innerHTML = html; });
+</script>
+
+<script>
+const gridBtn = document.getElementById('gridBtn');
+const listBtn = document.getElementById('listBtn');
+const container = document.getElementById('projectsContainer');
+
+gridBtn.addEventListener('click', () => {
+    container.classList.remove('list-view');
+    container.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
+    gridBtn.classList.add('active');
+    listBtn.classList.remove('active');
+});
+listBtn.addEventListener('click', () => {
+    container.classList.add('list-view');
+    container.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
+    listBtn.classList.add('active');
+    gridBtn.classList.remove('active');
+});
+</script>
+
 </body>
 </html>

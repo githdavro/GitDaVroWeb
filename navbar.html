@@ -1,25 +1,21 @@
-<!-- NAVBAR -->
+
 <header
   class="w-full py-9 px-9 md:px-20 flex justify-between items-center
-         absolute top-0 left-0 z-50
-         ">
+         absolute top-0 left-0 z-50">
 
-  <!-- LOGO -->
-<div
-  class="text-3xl font-black text-white select-none
-         tracking-[-0.08em] scale-x-[0.92] origin-left">
-  GITDAVRO<span class="opacity-70">.</span>
-</div>
+  <div
+    class="text-3xl font-black italic text-white select-none
+            origin-left">
+    GITDAVRO<span class="font-blackZSopacity-70">.</span>
+  </div>
 
-  <!-- DESKTOP NAV -->
   <nav class="hidden md:flex items-center space-x-2">
     <a href="index.html" data-nav="home"
       class="nav-link px-5 py-2 rounded-[30px]
              font-medium text-blue
              transition-all duration-300
              hover:bg-white/20 hover:text-white
-             active:rounded-lg
-             ">
+             active:rounded-lg">
       Home
     </a>
 
@@ -51,43 +47,73 @@
     </a>
   </nav>
 
-  <!-- MOBILE BUTTON -->
-  <button
-    id="mobile-menu-button"
-    class="md:hidden text-white text-2xl
-           transition-transform active:scale-90">
-    ☰
-  </button>
-</header>
+<div
+  id="ios-bottom-nav"
+  class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2
+         w-[92%] max-w-md h-16
+         bg-white/70 backdrop-blur-md
+         rounded-[26px]
+         shadow-[0_10px_40px_rgba(0,0,0,.25)]
+         z-50 flex items-center px-2">
 
-<!-- MOBILE MENU -->
-<div id="mobile-menu"
-  class="hidden fixed inset-0 z-40 font-black
-         bg-gradient-to-b from-[#0051cc] to-[#003c99]
-         flex flex-col items-center justify-center
-         space-y-16 text-2xl">
+  <div
+    id="liquid-pill"
+    class="absolute top-1 left-1
+           w-1/4 h-[52px]
+           bg-[#0051cc]/90 backdrop-blur-lg
+           rounded-[22px] focus:border-4 border-white  
+           transition-all duration-500 cubic-bezier(.22,1,.36,1)">
+  </div>
+  
 
   <a href="index.html" data-nav="home"
-    class="mobile-link font-bold text-white rounded-full px-5 py-2
-           transition-all duration-300 active:scale-90">
-    Home
+     class="nav-item active">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272l16 0 0 176c0 35.3 28.7 64 64 64l288 0c35.3 0 64-28.7 64-64l0-176 16 0c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1l-224-208zM240 320l32 0c26.5 0 48 21.5 48 48l0 96-128 0 0-96c0-26.5 21.5-48 48-48z"/></svg>
+    <span>Home</span>
   </a>
 
   <a href="about.html" data-nav="about"
-    class="mobile-link font-bold text-white rounded-full px-5 py-2
-           transition-all duration-300 active:scale-90">
-    About
+     class="nav-item">
+    <i class="fa-solid fa-user"></i>
+    <span>About</span>
   </a>
 
   <a href="portfolio.html" data-nav="portfolio"
-    class="mobile-link font-bold text-white rounded-full px-5 py-2
-           transition-all duration-300 hover:text-white active:scale-90">
-    Projects
+     class="nav-item">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Projects</span>
   </a>
 
   <a href="contacts.html" data-nav="contact"
-    class="mobile-link font-bold text-white rounded-full px-5 py-2
-           transition-all duration-300 active:scale-90">
-    Contact
+     class="nav-item">
+    <i class="fa-solid fa-envelope"></i>
+    <span>Contact</span>
   </a>
 </div>
+
+<style>
+
+.nav-item {
+  position: relative;
+  z-index: 10;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #001f4d99;
+  transition: color .35s ease;
+}
+
+.nav-item i {
+  font-size: 18px;
+}
+
+.nav-item.active {
+  color: white;
+}
+</style>

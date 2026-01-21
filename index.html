@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>GitDaVro - Home</title>
     <link rel="icon" type="image/png" href="storage/projects/icon.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,168 +16,256 @@
             overflow-x: hidden;
         }
 
-        /* Reactive Animations */
         .fade-in-up {
-            animation: fadeInUp 0.3s ease-out forwards;
+            animation: fadeInUp 0.4s ease-out forwards;
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes slow-spin {
-        from {
-            transform: rotate(0deg) ;
-        }
-        to {
-            transform: rotate(360deg);
-        }
-        }
-          @font-face {
-        font-family: 'MyLocalFont';
-        src: url('storage/fonts/SimsReloaded-Regular.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
 
-    .ini {
-        font-family: 'MyLocalFont', sans-serif;
-    }
+        @keyframes slow-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @font-face {
+            font-family: 'MyLocalFont';
+            src: url('storage/fonts/SimsReloaded-Regular.ttf') format('truetype');
+        }
+
+        .ini {
+            font-family: 'MyLocalFont', sans-serif;
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #d3e3fd;
+            color: #0051cc;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        #scrollTopBtn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #scrollTopBtn:hover {
+            transform: scale(1.1);
+            background-color: #ffffff;
+        }
     </style>
 </head>
-<body class=" bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
 
-           <div id="navbar"></div>
+<body class="bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
 
-<script>
-fetch('navbar.html')
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById('navbar').innerHTML = html;
+    <div id="navbar"></div>
+        <script>
+        fetch('navbar.html?v=' + Date.now())
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('navbar').innerHTML = html;
 
-    const path = window.location.pathname.toLowerCase();
-    let active = 'home';
+            const path = window.location.pathname.toLowerCase();
+            let active = 'home';
+            if (path.includes('about')) active = 'about';
+            else if (path.includes('portfolio')) active = 'portfolio';
+            else if (path.includes('contact')) active = 'contact';
 
-    if (path.includes('about')) active = 'about';
-    else if (path.includes('portfolio')) active = 'portfolio';
-    else if (path.includes('contact')) active = 'contact';
+            document.querySelectorAll('nav a[data-nav]').forEach(link => {
+            link.classList.remove('bg-white','text-blue-800','font-black');
+            link.classList.add('text-white','font-medium'); 
 
-    document.querySelectorAll('[data-nav]').forEach(link => {
-      if (link.dataset.nav === active) {
+            if (link.dataset.nav === active) {
+                link.classList.add('bg-white','text-blue-800','font-black');
+                link.classList.remove('text-white','font-medium');
+            }
+            });
+            setTimeout(() => {
+            const items = document.querySelectorAll('.nav-item');
+            const pill = document.getElementById('liquid-pill');
+            if (!pill || items.length === 0) return;
+            items.forEach(i => i.classList.remove('active'));
+            let index = 0;
+            switch(active) {
+                case 'home': index = 0; break;
+                case 'about': index = 1; break;
+                case 'portfolio': index = 2; break;
+                case 'contact': index = 3; break;
+            }
+            items[index].classList.add('active');
+            pill.style.left = `calc(${index * 25}% + 7px)`;
+            items.forEach((item, i) => {
+                item.addEventListener('click', function(e) {
+                items.forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                pill.style.left = `calc(${i * 25}% + 7px)`;
+                });
+            });
+            }, 80);
+        });
+    </script>
 
-        link.classList.remove('font-medium');
+    <main class="flex-grow flex items-center justify-center pt-24 md:pt-0">
 
-        link.classList.add(
-          'bg-white',
-          'text-blue-800',
-          'font-black',
-          'px-5',
-          'py-2',
-          'rounded-full'
-        );
-      }
-    });
+    <div class="w-full max-w-7xl px-6 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-    const btn = document.getElementById('mobile-menu-button');
-    const menu = document.getElementById('mobile-menu');
-    btn?.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      document.body.classList.toggle('overflow-hidden');
-    });
-  });
-</script>
-
-    <main class="flex-grow flex items-center pt-20 md:pt-0">
-
-        <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
-            <div class="relative order-2 md:order-1 flex justify-center items-center">
-                <div class="relative w-64 h-64 md:w-[550px] md:h-[550px]">
+        <div class="flex justify-center md:justify-end order-1">
+            <div class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[520px] md:h-[520px]">
                 <img
-                        src="storage/projects/shapes.png"
-                        alt="Background Shape"
-                        class="
-                            absolute inset-0
-                            w-500 h-500
-                            object-contain
-                            z-0
-                            select-none
-                            pointer-events-none
-                            animate-[slow-spin_30s_linear_infinite]
-                        "
-                    >
-                    <img
-                        src="storage/projects/git.png"
-                        alt="Githriff Ahmad"
-                        class="
-                            relative z-10
-                            w-full h-full
-                            object-contain
-                            drop-shadow-2xl
-                        "
-                    >
-                </div>
-            </div>
-
-            <div class="order-1 md:order-2 space-y-9 fade-in-up">
-                <div class="space-y-2">
-                    <h1 class="md:text-5xl font-bold leading-tight">
-                        Hi, I'm <span class="ini">GITHRIFF AHMAD</span>
-                    </h1>
-                    <h2 class="md:text-2xl font-bold opacity-90">
-                        Student and a Junior Front-End Developer
-                    </h2>
-                
-                <p class="text-lg md:text-lg text-white/80  leading-relaxed">
-                    I craft digital experiences with PHP and JavaScript, blending functionality with beautiful design. I also enjoy drawing, designing, and much more.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="about.html"
+                    src="storage/projects/shapes.png"
                     class="
+                        absolute inset-0 w-full h-full object-contain
+                        opacity-90
+                        pointer-events-none
+                        animate-[slow-spin_32s_linear_infinite]
+                    "
+                >
+                <img
+                    src="storage/projects/git - Copy.png"
+                    class="
+                        relative z-10 w-full h-full object-contain
+                        drop-shadow-2xl
+                    "
+                >
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-5 fade-in-up order-2">
+
+            <h1 class="text-3xl md:text-5xl font-bold leading-tight">
+                Hi, I'm <span class="ini block md:inline" style="letter-spacing: 0.1em;">
+  GITHRIFF AHMAD</span>
+            </h1>
+
+            <h2 class="text-lg md:text-2xl font-bold opacity-90">
+                Student and a Junior Front-End Developer
+            </h2>
+
+            <p class="text-base md:text-lg text-white/80 leading-relaxed max-w-xl">
+                I craft digital experiences with PHP and JavaScript, blending functionality with beautiful design. I also enjoy drawing, designing, and much more.
+            </p>
+
+            <div class="w-full flex flex-col md:flex-row gap-4 pt-4 md:justify-start">
+
+                <a href="about.html"
+                   class="
                         inline-flex items-center justify-center
                         px-8 py-4 
                         text-lg font-black tracking-wide
                         bg-[#d3e3fd] text-blue-800
-                        rounded-2xl /* M3 Extra Large Shape */
+                        rounded-2xl
                         transition-all duration-400 cubic-bezier(0.34, 1.56, 0.64, 1)
                         hover:bg-white
                         active:rounded-[30px]
-                    ">
+                        w-full md:w-auto
+                   ">
                     About Me
-                    </a>
+                </a>
 
-                    <a href="portfolio.html"
-                    class="
-                    border-2 border-white/80 text-white
-                    inline-flex items-center justify-center
-                    px-8 py-4 
-                    text-lg font-black tracking-wide
-                    rounded-2xl /* M3 Extra Large Shape */
-                    shadow-sm
-                    transition-all duration-400 cubic-bezier(0.34, 1.56, 0.64, 1)
-                    hover:bg-white/20
-                    hover:shadow-md 
-                    active:rounded-[30px]
-                    active:shadow-inner
-                    ">
+                <a href="portfolio.html"
+                   class="
+                        border-2 border-white/80 text-white
+                        inline-flex items-center justify-center
+                        px-8 py-4 
+                        text-lg font-black tracking-wide
+                        rounded-2xl
+                        shadow-sm
+                        transition-all duration-400 cubic-bezier(0.34, 1.56, 0.64, 1)
+                        hover:bg-white/20
+                        hover:shadow-md 
+                        active:rounded-[30px]
+                        active:shadow-inner
+                        w-full md:w-auto
+                   ">
                     See Projects
-                    </a>
-                </div>
-            </div>
-                
+                </a>
+
             </div>
         </div>
+
+    </div>
     </main>
 
     <div id="footer"></div>
+        <script>
+        fetch('footer.html')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('footer').innerHTML = html;
+        });
+        </script>
 
-            <script>
-            fetch('footer.html')
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('footer').innerHTML = html;
+    <div id="scrollTopBtn"
+            style="
+                position: fixed;
+                bottom: 100px;
+                right: 30px;
+                background-color: rgba(211, 227, 253, 0.6); /* semi transparan */
+                backdrop-filter: blur(8px); /* efek blur */
+                -webkit-backdrop-filter: blur(8px); /* Safari */
+                color: #0051cc;
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transition: all 0.3s ease;
+                opacity: 0;
+                pointer-events: none;
+                z-index: 1000;
+            ">
+            <i class="fas fa-chevron-up"></i>
+    </div>
+
+        <script>
+            const scrollBtn = document.getElementById('scrollTopBtn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.style.opacity = "1";
+                    scrollBtn.style.pointerEvents = "auto";
+                } else {
+                    scrollBtn.style.opacity = "0";
+                    scrollBtn.style.pointerEvents = "none";
+                }
             });
-            </script>
+
+            scrollBtn.addEventListener('mouseover', () => {
+                scrollBtn.style.transform = "scale(1.1)";
+                scrollBtn.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+            });
+
+            scrollBtn.addEventListener('mouseout', () => {
+                scrollBtn.style.transform = "scale(1)";
+                scrollBtn.style.backgroundColor = "rgba(211, 227, 253, 0.6)";
+            });
+
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        </script>
 
 </body>
 </html>
