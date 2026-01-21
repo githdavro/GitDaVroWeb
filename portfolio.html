@@ -32,11 +32,51 @@ body { font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
 <body class="bg-gradient-to-b from-[#0051cc] to-[#003c99] text-white min-h-screen flex flex-col">
 
 <div id="navbar"></div>
-<script>
-fetch('navbar.html?v=' + Date.now())
-.then(res => res.text())
-.then(html => { document.getElementById('navbar').innerHTML = html; });
-</script>
+        <script>
+        fetch('navbar.html?v=' + Date.now())
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('navbar').innerHTML = html;
+
+            const path = window.location.pathname.toLowerCase();
+            let active = 'home';
+            if (path.includes('about')) active = 'about';
+            else if (path.includes('portfolio')) active = 'portfolio';
+            else if (path.includes('contact')) active = 'contact';
+
+            document.querySelectorAll('nav a[data-nav]').forEach(link => {
+            link.classList.remove('bg-white','text-blue-800','font-black');
+            link.classList.add('text-white','font-medium'); 
+
+            if (link.dataset.nav === active) {
+                link.classList.add('bg-white','text-blue-800','font-black');
+                link.classList.remove('text-white','font-medium');
+            }
+            });
+            setTimeout(() => {
+            const items = document.querySelectorAll('.nav-item');
+            const pill = document.getElementById('liquid-pill');
+            if (!pill || items.length === 0) return;
+            items.forEach(i => i.classList.remove('active'));
+            let index = 0;
+            switch(active) {
+                case 'home': index = 0; break;
+                case 'about': index = 1; break;
+                case 'portfolio': index = 2; break;
+                case 'contact': index = 3; break;
+            }
+            items[index].classList.add('active');
+            pill.style.left = `calc(${index * 25}% + 7px)`;
+            items.forEach((item, i) => {
+                item.addEventListener('click', function(e) {
+                items.forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                pill.style.left = `calc(${i * 25}% + 7px)`;
+                });
+            });
+            }, 80);
+        });
+    </script>
 
 <main class="flex-grow pt-28 pb-16 fade-in-up">
     <div class="container mx-auto px-4 max-w-5xl">
